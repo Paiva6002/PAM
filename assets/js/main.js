@@ -6,18 +6,47 @@ let imagens = ['./assets/img/1.png', './assets/img/2.png', './assets/img/3.png',
 
 let count = [];
 let = [];
+let igual = 0
+
 
 
 cols.forEach(col => {
-  col.addEventListener('click', () => {
-    let randomN = parseInt(Math.random() * 11);
+  let randomN = parseInt(Math.random() * 11);
+  count[col.id] = randomN
+
+  imagens.forEach(imagem => {
+    for(i=0;i<12;i++) {
+      if(imagem == imagens[i]) {
+        igual ++
+      }
+      if (igual == 2) {
+        imagens[i] = ''
+        
+        igual = 0
+      }
+
+
+  }
+  });
+
+  imgs[col.id].setAttribute('src', imagens[randomN])
+})
+
+
+
+console.log(imagens)
+
+
+// cols.forEach(col => {
+//   col.addEventListener('click', () => {
+//     let randomN = parseInt(Math.random() * 11);
     
 
-    imgs[col.id].setAttribute('src', imagens[randomN]);
-    imgs.forEach(img => {
+//     imgs[col.id].setAttribute('src', imagens[randomN]);
+//     imgs.forEach(img => {
       
-    });
-  })
-});
+//     });
+//   })
+// });
 
 

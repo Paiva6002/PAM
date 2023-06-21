@@ -4,4 +4,10 @@
 
 .col-4, img {
   height: 10em;
+  justify-content: center;
+}
+
+img {
+  display: flex;
+  justify-content: center;
 }
