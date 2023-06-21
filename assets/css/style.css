@@ -1,3 +1,7 @@
 * {
   outline: dashed red 1px;
 }
+
+.col-4, img {
+  height: 10em;
+}
