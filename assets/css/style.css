@@ -2,12 +2,13 @@
   outline: dashed red 1px;
 }
 
-.col-4, img {
+.col-4 {
   height: 10em;
   justify-content: center;
 }
 
 img {
+  height: 8.5em;
   display: flex;
   justify-content: center;
 }
