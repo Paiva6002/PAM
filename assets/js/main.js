@@ -6,6 +6,11 @@ const btn = document.querySelector('.btn')
 let imagens = ['./assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png', './assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png']
 
 
+class Score {
+  points = 0;
+  life = 3
+}
+
 let nRandom;
 let numbers = [];
 let cardsGalery = [];
@@ -37,28 +42,76 @@ arrayRandom();
 numbers.forEach(n => {
   divImg = document.createElement('img');
   cards[numbers[n]].appendChild(divImg);
-  
+
+  imgs[numbers[n]].id = n
 
   divImg.setAttribute('src',  imagens[n]);
-
-  cardsGalery.push(imagens[n])
 });
 
-  
-  console.log();
-
-
 btn.addEventListener('click', () => {
+  const score = document.querySelector('.score');
+
+  score.classList.remove('d-none');
+  score.classList.add('d-flex', 'justify-content-center');
+
+  btn.classList.add('d-none');
+
   for(i=0;i<24;i++) {
     cards[i].classList.add('d-none');
   }
 
-  cols.forEach(col => {
-    col.addEventListener('click', () => {
-      cards[col.id].classList.remove('d-none')
-      console.log(cardsGalery[col.id])
-    })
-  });
-  
-})
+  let click = 0;
+  let clickCount = 0;
+  let lister = 0;
+  let clicker = true;
+  let clickerCheck;
 
+
+  cols.forEach(col => {
+
+    col.addEventListener('click', () => {
+      if (clicker == true) {
+        clicker = false
+        cards[col.id].classList.remove('d-none');
+
+        function settime() {
+          if (click != clickCount) {
+            cards[col.id - 1].classList.add('d-none');
+            cards[col.id].classList.add('d-none');
+          }
+          console.log('sim')
+        }
+        clickCount = click;
+        
+        if (lister == 1) {
+          setTimeout(settime, 600);
+        }
+        click = imagens[imgs[col.id].id];
+        
+        console.log(click, clickCount)
+
+        lister++
+
+
+      
+    }
+
+    console.log(clickerCheck, col.id)
+    
+      if (clickerCheck == col.id) {
+        clicker = false;
+      } 
+      if (clickerCheck != col.id) {
+        clicker = true;
+      }
+
+    console.log(clicker)
+    
+    clickerCheck = col.id;
+
+    })
+      
+      
+
+  })
+})
