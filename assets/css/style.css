@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Mario;
+  src: url(../fonts/super-mario-maisfontes.8c93/super-mario.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,15 +17,21 @@ body {
   zoom: 0.9;
 }
 
+.card {
+  background: none;
+  border: none;
+}
+
 .col-2 {
   height: 10em;
   justify-content: center;
   align-content: center;
 }
 
-.img {
+.col-2 {
   background-image: url(../img/tubo.png);
   background-size: 100%;
+  padding: 1em;
 }
 
 .card {
@@ -45,4 +56,27 @@ body {
 
 .btn {
   height: 8em;
+}
+
+.score {
+  font-family: Mario;
+  font-size: 4em;
+  color: #000;
+}
+
+.moeda {
+  height: 0.9em;
+}
+
+.life {
+  margin-top: -0.8em;
+}
+
+.points {
+  margin-top: 0.8em;
+}
+
+.moeda {
+  margin-bottom: 15px;
+  margin-left: 1em;
 }

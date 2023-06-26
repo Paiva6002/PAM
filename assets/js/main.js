@@ -7,25 +7,28 @@ let imagens = ['./assets/img/1.png', './assets/img/2.png', './assets/img/3.png',
 
 
 class Score {
-  points = 0;
-  life = 3
+  constructor(points, life) {
+    this.points = points;
+    this.life = life;
+  }
 }
+
+p1 = new Score(0, 3);
 
 let nRandom;
 let numbers = [];
-let cardsGalery = [];
 
 
 function arrayRandom() {
   nRandom = parseInt(Math.random() * 24)
-  
+
   numbers.forEach(n => {
     if (nRandom == n) {
       arrayRandom()
       n = nRandom
     }
   });
-  
+
   if (numbers.length == 24) {
     return
   }
@@ -45,73 +48,112 @@ numbers.forEach(n => {
 
   imgs[numbers[n]].id = n
 
-  divImg.setAttribute('src',  imagens[n]);
+  divImg.setAttribute('src', imagens[n]);
 });
 
 btn.addEventListener('click', () => {
   const score = document.querySelector('.score');
+  const jogar = document.querySelector('.jogar')
 
+  jogar.classList.add('d-none');
   score.classList.remove('d-none');
   score.classList.add('d-flex', 'justify-content-center');
 
   btn.classList.add('d-none');
 
-  for(i=0;i<24;i++) {
+  for (i = 0; i < 24; i++) {
     cards[i].classList.add('d-none');
   }
 
   let click = 0;
   let clickCount = 0;
-  let lister = 0;
+  let lister = 1;
   let clicker = true;
   let clickerCheck;
+  let imgNone;
+  let cardsGalery = [];
 
+  const life = document.querySelector('.life')
+  
+  const points = document.querySelector('.points')
+
+  points.innerHTML = 'X0'+p1.points;
+  life.innerHTML = '00000'+p1.life;
 
   cols.forEach(col => {
 
     col.addEventListener('click', () => {
+
       if (clicker == true) {
-        clicker = false
+        clicker = false;
+
         cards[col.id].classList.remove('d-none');
 
         function settime() {
           if (click != clickCount) {
-            cards[col.id - 1].classList.add('d-none');
-            cards[col.id].classList.add('d-none');
+            imgNone.classList.add('d-none');
+            imgs[col.id].classList.add('d-none');
+
+            console.log(imgs[col.id], imgNone)
+
+            p1.life = p1.life - 1;
+            console.log(p1.life)
+            life.innerHTML = '00000'+p1.life;
+
+            
+            
+            if (p1.life == 0) {
+              for (i = 0; i < 24; i++) {
+                cards[i].classList.add('d-none');
+              }
+            }
+            
+            
           }
-          console.log('sim')
+          if (click == clickCount) {
+            cardsGalery.push(imgNone, imgs[col.id])
+            p1.points = p1.points + 1
+            console.log(p1.points)
+            points.innerHTML = 'X0'+p1.points;
+
+            
+            
+          }
         }
+        
+        
         clickCount = click;
         
-        if (lister == 1) {
+        if (lister == 2) {
           setTimeout(settime, 600);
+          lister = 0;
+        }
+        
+        if (lister == 1) {
+          imgNone = imgs[col.id];
         }
         click = imagens[imgs[col.id].id];
         
-        console.log(click, clickCount)
-
         lister++
-
-
+      }
       
-    }
-
-    console.log(clickerCheck, col.id)
-    
+      console.log(clickCount, click);
+      
       if (clickerCheck == col.id) {
         clicker = false;
-      } 
+      }
       if (clickerCheck != col.id) {
         clicker = true;
       }
 
-    console.log(clicker)
-    
-    clickerCheck = col.id;
-
-    })
+      // console.log(clicker);
+      
+      clickerCheck = col.id;
       
       
 
-  })
-})
+    });
+
+  });
+});
+
