@@ -17,28 +17,38 @@ body {
   zoom: 0.9;
 }
 
+.container {
+  height: 100vh;
+}
+
 .card {
   background: none;
   border: none;
 }
 
-.col-2 {
+.col-1 {
   height: 10em;
   justify-content: center;
   align-content: center;
+  margin: 1em;
+  height: 6.5em;
+  width: 9em;
 }
 
-.col-2 {
+.col-1 {
   background-image: url(../img/tubo.png);
   background-size: 100%;
-  padding: 1em;
+  height: 9em;
 }
 
 .card {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 1em;
 } 
+
+
 
 .card img {
   height: 10em;
@@ -79,4 +89,11 @@ body {
 .moeda {
   margin-bottom: 15px;
   margin-left: 1em;
+}
+
+.game-over {
+  height: 100vh;
+  font-family: Mario;
+  font-size: 12em;
+  color: #000;
 }
