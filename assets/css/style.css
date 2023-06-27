@@ -1,3 +1,27 @@
+@media (max-width: 1200px) {
+  body {
+    .card img {
+      height: 8em;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  body {
+    .card img {
+      height: 6em;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    .card img {
+      height: 4em;
+    }
+  }
+}
+
 @font-face {
   font-family: Mario;
   src: url(../fonts/super-mario-maisfontes.8c93/super-mario.ttf);
@@ -9,15 +33,19 @@
 }
 
 body {
-  background-image: url(../img/background.jpg);
+  background-image: url(../img/background.jpg) ;
+  background-size: cover;
+  background-position: 1%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: 1%;
-  background-size: 100%;
-  zoom: 0.9;
+  zoom: 0.8;
 }
 
 .container {
+  height: 100vh;
+}
+
+.mensagem {
   height: 100vh;
 }
 
@@ -26,26 +54,17 @@ body {
   border: none;
 }
 
-.col-1 {
-  height: 10em;
-  justify-content: center;
-  align-content: center;
-  margin: 1em;
-  height: 6.5em;
-  width: 9em;
-}
-
-.col-1 {
+.col-xxl-2 {
   background-image: url(../img/tubo.png);
+  background-repeat: no-repeat;
   background-size: 100%;
-  height: 9em;
+  height: 11em;
 }
 
 .card {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  padding: 1em;
 } 
 
 
@@ -61,6 +80,7 @@ body {
 .img {
   height: 10em;
   display: flex;
+  align-items: start;
   justify-content: center;
 }
 
@@ -91,9 +111,9 @@ body {
   margin-left: 1em;
 }
 
-.game-over {
-  height: 100vh;
+.mensagem {
   font-family: Mario;
-  font-size: 12em;
+  font-size: 10em;
   color: #000;
+  width: 30em;
 }

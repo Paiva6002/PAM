@@ -1,31 +1,33 @@
 const imgs = document.querySelectorAll('.img');
 const cards = document.querySelectorAll('.card');
-const cols = document.querySelectorAll('.col-1');
+const cols = document.querySelectorAll('.col-xxl-2');
 const btn = document.querySelector('.btn');
 const container = document.querySelector('.container');
-const gameOver = document.querySelector('.game-over');
+const msg = document.querySelector('.msg');
+const containerMsg = document.querySelector('.mensagem');
 
-let imagens = ['./assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png', './assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png'];
+let imagens = ['./assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png', './assets/img/1.png', './assets/img/2.png', './assets/img/3.png', './assets/img/4.png', './assets/img/5.png', './assets/img/6.png', './assets/img/7.png', './assets/img/8.png', './assets/img/9.png', './assets/img/10.png', './assets/img/11.png', './assets/img/12.png']; // url das imagens são colocadas em uma array para serem utilizadas, nesse array existe 24 urls, mas existe 12 em si, pois estão duplicadas 
 
 
-class Score {
+class Score { // Classe feita para guardar valor dos pontos de vida do jogador e seus acertos feitos
   constructor(points, life) {
     this.points = points;
     this.life = life;
   }
 }
 
-p1 = new Score(0, 3);
+p1 = new Score(0, 3); // Atribuo o valor inicial dos pontos de vida e dos pontos de acertos
 
-let nRandom;
-let numbers = [];
+let nRandom; // Variável que ira guardar o número aleatório que será gerado mas adiante 
+let numbers = []; // Array criado para guardar todos os números aleatórios criador 
 
-function arrayRandom() {
-  nRandom = parseInt(Math.random() * 24)
+function arrayRandom() { // Função que gera um array com números aleatórios que estão no intervalo de 0 e 23, o objetivo principal dessa função é criar o array com os númmeros do intervalo determinado fazendo com que números não se repitam 
 
-  numbers.forEach(n => {
+  nRandom = parseInt(Math.random() * 24) // Gera o número aleatório
+
+  numbers.forEach(n => { // Verifica se o número aleatório é igual a algum elemento que já foi criado anteriormente, tais números estão dentro do array numbers
     if (nRandom == n) {
-      arrayRandom();
+      arrayRandom(); // Se existir a repetição do número, a função será reinicializada
       n = nRandom;
     }
   });
@@ -106,9 +108,12 @@ btn.addEventListener('click', () => {
             life.innerHTML = '00000' + p1.life;
 
 
-            if (p1.life == '00000' + 0) {
+            if (p1.life == 0) {
               container.classList.add('d-none');
-              gameOver.classList.remove('d-none');
+              containerMsg.classList.remove('d-none');
+              msg.classList.remove('d-none');
+
+              msg.innerHTML = "GAME OVER";
 
               life.innerHTML = p1.life = '00000' + 3
             }
@@ -120,6 +125,17 @@ btn.addEventListener('click', () => {
 
             p1.points = p1.points + 1;
             points.innerHTML = 'X0' + p1.points;
+
+            if (p1.points == 12) {
+              container.classList.add('d-none');
+              containerMsg.classList.remove('d-none')
+              msg.classList.remove('d-none');
+
+              msg.innerHTML = "CONGRATULATIONS";
+              
+
+              life.innerHTML = p1.life = '00000' + 0
+            }
           }
         }
         clickCount = click;
