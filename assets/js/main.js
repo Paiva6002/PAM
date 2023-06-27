@@ -27,46 +27,46 @@ function arrayRandom() { // Função que gera um array com números aleatórios 
 
   numbers.forEach(n => { // Verifica se o número aleatório é igual a algum elemento que já foi criado anteriormente, tais números estão dentro do array numbers
     if (nRandom == n) {
-      arrayRandom(); // Se existir a repetição do número, a função será reinicializada
-      n = nRandom;
+      arrayRandom(); // Se existir a repetição do número, a função será reinicializada, assim criando um algoritmo recursivo
+      n = nRandom; // Logo depois da função ser chamada, o elemento n do array irá receber o valor do novo número aleatório
     }
   });
 
-  if (numbers.length == 24) {
+  if (numbers.length == 24) { // Quando o número de elementos do array numbers alcançar 24, a função será finalizada
     return;
   }
-  numbers.push(nRandom);
-  if (numbers.length < 24) {
+
+  numbers.push(nRandom); // Enviando os números aleatórios para o array com a função push
+
+  if (numbers.length < 24) { // Se o número de elementos do array numbers for menor que 24, a função será chamada até que esse requisito seja verdade, até que seu número de elementos seja igual a 24
     arrayRandom();
   }
 }
 
-arrayRandom();
+arrayRandom(); // Chama a função, aqui já temos o array dos números aleatórios completo com seus 24 elementos
 
-numbers.forEach(n => {
-  divImg = document.createElement('img');
-  cards[numbers[n]].appendChild(divImg);
+numbers.forEach(n => { // Passa em cada elemento do array numbers, ou seja, passa em cada número aleatório
+  divImg = document.createElement('img'); // Cria um elemento img
+  cards[numbers[n]].appendChild(divImg); // O elemento img criado e colocado dentro de outro elemento aleatoriamente 
 
-  imgs[numbers[n]].id = n;
+  imgs[numbers[n]].id = n; // Atribui ids aleatórios para os elementos
 
-  divImg.setAttribute('src', imagens[n]);
+  divImg.setAttribute('src', imagens[n]); // Atribui src para os elemetos img, é usado o array com as urls para atribuir o src
 });
 
-btn.addEventListener('click', () => {
-  const score = document.querySelector('.score');
+btn.addEventListener('click', () => { // Função de clique no botão 'Jogar', tal evento inicia o jogo
+  const score = document.querySelector('.score'); // Pego um elemento do html, de acordo com sua classe
   const jogar = document.querySelector('.jogar');
 
-  jogar.classList.add('d-none');
-  score.classList.remove('d-none');
-  score.classList.add('d-flex', 'justify-content-center');
+  jogar.classList.add('d-none');  // Adiciono a classe display none, para o botão, para que ele desapareça quando for clicado
+  score.classList.remove('d-none'); // Removo a classe display none, para que o score (pontos de vida e acertos) seja visível 
+  score.classList.add('d-flex', 'justify-content-center'); // Adiciono display flex e justify-content-center no elemento
 
-  btn.classList.add('d-none');
-
-  for (i = 0; i < 24; i++) {
+  for (i = 0; i < 24; i++) { // Deixar todos os cards (imagens), escondidas
     cards[i].classList.add('d-none');
   }
 
-  let click = 0;
+  let click = 0; // Variável criada 
   let clickCount = 0;
   let lister = 1;
   let clicker = true;
