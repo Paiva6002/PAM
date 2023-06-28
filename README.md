@@ -1,4 +1,4 @@
-<h1>PAM</h1>
+<h1 align="center">PAM</h1>
 
 ### Atividade Prática em Sala de Aula - Jogo da Memória
 
